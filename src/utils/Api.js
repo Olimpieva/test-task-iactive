@@ -8,7 +8,6 @@ class MainApi {
     async _sendRequest(path, requestOptions) {
 
         try {
-            console.log('Ya tut?')
             const response = await fetch(`${this._url}${path}`, { ...requestOptions });
 
             if (!response.ok) {
@@ -22,14 +21,13 @@ class MainApi {
         }
     };
 
-    getMessages(data) {
+    getMessages(requestData) {
 
-        console.log({ data })
         return this._sendRequest(
             ``,
             {
                 method: 'POST',
-                body: data,
+                body: requestData,
             },
         );
     };

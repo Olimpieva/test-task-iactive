@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import messagesActions from '../../redux/actions';
-import { currentMessagesSelector } from '../../redux/selectors';
 import MessageList from '../MessageList/MessageList';
 
 import './App.css';
@@ -10,17 +9,20 @@ import './App.css';
 function App() {
 
   const dispatch = useDispatch();
-  const { entities: messages } = useSelector(currentMessagesSelector);
 
-  console.log({ messages })
+  const getNewMessages = () => {
+    setInterval(() => {
+      dispatch(messagesActions.getMessages());
+    }, 5000)
+  }
 
   useEffect(() => {
     dispatch(messagesActions.getMessages());
+    getNewMessages();
   }, [dispatch])
 
   return (
     <div className="app">
-      App
       <MessageList />
     </div>
   );

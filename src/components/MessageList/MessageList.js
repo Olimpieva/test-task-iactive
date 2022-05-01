@@ -8,20 +8,18 @@ import './MessageList.css';
 
 function MessageList() {
 
-    const { entities, loading } = useSelector(currentMessagesSelector);
+    const { entities } = useSelector(currentMessagesSelector);
 
-    console.log({ entities })
-
-    if (loading || !entities) {
+    if (entities.length === 0) {
         return <div>Loading</div>
     }
 
     return (
         <div className="message-list">
             <ul className="message-list__list">
-                {entities.Messages.map(item => {
+                {entities.map(item => {
                     return (
-                        <li className="message-list__item" key={item.id} >
+                        <li className="message-list__item" key={item.id + item.author + item.content} >
                             <Message item={item} />
                         </li>
                     );

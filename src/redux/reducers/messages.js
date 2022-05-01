@@ -1,7 +1,8 @@
-import { REQUEST, SUCCESS, FAILURE, GET_MESSAGES } from "../actions/actionTypes";
+import { REQUEST, SUCCESS, FAILURE, GET_MESSAGES, SET_LOADING_END } from "../actions/actionTypes";
 
 const initialState = {
-    entities: null,
+    entities: [],
+    lastMessageId: 0,
     loading: false,
     error: null,
 };
@@ -12,9 +13,11 @@ const Tasks = (state = initialState, action) => {
         case GET_MESSAGES + REQUEST:
             return { ...state, loading: true, error: null };
         case GET_MESSAGES + SUCCESS:
-            return { ...state, entities: action.payload, loading: false, error: null };
+            return { ...state, ...action.payload, loading: false, error: null }
         case GET_MESSAGES + FAILURE:
-            return { ...state, entities: null, totalEntitiesCount: 0, loading: false, error: action.payload };
+            return { ...state, loading: false, error: action.payload };
+        case SET_LOADING_END:
+            return { ...state, loading: false }
         default:
             return state;
     };
