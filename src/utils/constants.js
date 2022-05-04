@@ -14,4 +14,18 @@ export const createFormData = (data) => {
     }
 
     return formData;
-}
+};
+
+export const sortData = (data, order) => {
+    let sortData;
+
+    if (order === 'asc') {
+        sortData = data.sort((prev, next) => prev.id < next.id ? -1 : 1);
+    }
+
+    if (order === 'desc') {
+        sortData = data.sort((prev, next) => prev.id > next.id ? -1 : 1);
+    }
+
+    return sortData;
+};
