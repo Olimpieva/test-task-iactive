@@ -2,13 +2,14 @@ import React from 'react';
 
 import { ReactComponent as Avatar } from '../../images/avatar.svg';
 import { ReactComponent as LikeIcon } from '../../images/icons/like-icon.svg';
+import { ReactComponent as LikeIconActive } from '../../images/icons/like-icon_active.svg';
 import { ReactComponent as SettingsIcon } from '../../images/icons/settings-icon.svg';
 import { ReactComponent as SendMessageIcon } from '../../images/icons/send-message-icon.svg';
 import { ReactComponent as HideMessageIcon } from '../../images/icons/hide-message-icon.svg';
 
 import './Message.css';
 
-function Message({ item }) {
+function Message({ item, isLiked, likeMessageHandler }) {
 
     const { author, content, date, attachments } = item;
 
@@ -16,6 +17,7 @@ function Message({ item }) {
         acc[item.type] = item.url
         return acc;
     }, {});
+
 
     return (
         <div className="message">
@@ -32,7 +34,10 @@ function Message({ item }) {
                             <SendMessageIcon />
                             <HideMessageIcon />
                             <SettingsIcon />
-                            <LikeIcon />
+                            <button onClick={() => likeMessageHandler(item.id)}>
+                                {isLiked ? <LikeIconActive /> : <LikeIcon />}
+                            </button>
+
                         </div>
                     </div>
 

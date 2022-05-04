@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import messagesActions from '../../redux/actions';
@@ -10,16 +10,16 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const getNewMessages = () => {
+  const getNewMessages = useCallback(() => {
     setInterval(() => {
       dispatch(messagesActions.getMessages());
     }, 5000)
-  }
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(messagesActions.getMessages());
     getNewMessages();
-  }, [dispatch])
+  }, [dispatch, getNewMessages])
 
   return (
     <div className="app">
