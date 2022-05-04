@@ -33,7 +33,7 @@ export const getMessages = () => async (dispatch, getState) => {
 
         dispatch({ type: GET_MESSAGES + SUCCESS, payload: { entities: messages, lastMessageId: lastId } });
     } catch (error) {
-        console.log(error)
+        dispatch(handleError({ errorCode: error.status || 500, action: GET_MESSAGES }));
     }
 }
 

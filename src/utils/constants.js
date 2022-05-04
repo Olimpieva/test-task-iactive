@@ -1,6 +1,7 @@
 export const MAIN_URL = 'http://f0665380.xsph.ru/';
 
 export const requestErrorMessages = {
+    badRequestError: () => 'Переданы некорректные данные при загрузке сообщений.',
     serverError: () => 'Произошла ошибка на сервере. Попробуйте повторить запрос позднее.',
     otherError: ({ errorCode, action }) => `Ой! Во время запроса ${action} произошла ошибка ${errorCode}`,
 };

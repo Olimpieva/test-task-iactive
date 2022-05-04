@@ -11,7 +11,7 @@ import './MessageList.css';
 function MessageList() {
 
     const dispatch = useDispatch();
-    const { entities, settings: { order } } = useSelector(currentMessagesSelector);
+    const { entities, settings: { order }, error } = useSelector(currentMessagesSelector);
     const favoritesMessages = JSON.parse(localStorage.getItem('favorites')) || [];
     const [likedMessages, setLikedMessages] = useState(favoritesMessages)
 
@@ -40,7 +40,7 @@ function MessageList() {
         setLikedMessages(updatedLikedMessages);
     };
 
-    if (currentMessages.length === 0) {
+    if (currentMessages.length === 0 && !error) {
         return <div>Loading</div>
     }
 
@@ -52,6 +52,8 @@ function MessageList() {
                 <option value={availableSortOrder.desc}>От нового к старому</option>
             </select>
 
+            {error && <span>{error}</span>}
+
             <ul className="message-list__list">
                 {currentMessages.map((item, index) => (
                     <li className="message-list__item" key={`${item.id}_${index}`} >
@@ -59,6 +61,7 @@ function MessageList() {
                     </li>
                 ))}
             </ul>
+
         </div>
     );
 };

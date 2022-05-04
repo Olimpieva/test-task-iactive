@@ -7,6 +7,8 @@ const handleError = ({ errorCode = 500, action }) => {
         type: action + FAILURE,
         payload: (() => {
             switch (errorCode) {
+                case 400:
+                    return requestErrorMessages.badRequestError();
                 case 500:
                     return requestErrorMessages.serverError();
                 default:
