@@ -1,28 +1,29 @@
 .message-list {
-    padding: 10px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
 }
 
 .message-list__sort {
     margin-bottom: 30px;
-    padding: 5px;
     align-self: flex-end;
-    border: 1px solid #808080;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all .2s ease-out;
-}
-
-.message-list__sort:focus-visible {
-    outline: none;
 }
 
 .message-list__list {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .message-list {
+        padding: 10px;
+    }
 }

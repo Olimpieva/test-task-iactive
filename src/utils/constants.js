@@ -11,6 +11,10 @@ export const availableSortOrder = {
     desc: 'desc'
 };
 
+export const maxShownCharLength = 400;
+
+export const hashtagFixtures = ['New', 'Expert'];
+
 export const createFormData = (data) => {
     const formData = new FormData();
 
@@ -35,5 +39,5 @@ export const handleDate = (dateToHandle) => {
         time: `${handleDateHours}:${handleDateMinutes}`,
         date: `${handleDateDay}-${handleDateMonth}-${handleDateYear}`,
         isToday: now.getFullYear() === handleDateYear && now.getMonth() === date.getMonth() && now.getDate() === date.getDate(),
-    }
-}
+    };
+};

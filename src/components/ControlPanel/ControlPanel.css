@@ -1,0 +1,46 @@
+.control-panel {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 29px;
+}
+
+.some-options {
+    display: flex;
+    gap: 10px;
+}
+
+.some-options__button {
+    padding: 8px 10px;
+    background: transparent;
+    border: 1px solid #0088EE;
+    border-radius: 3px;
+    font-size: 11px;
+    color: #0088EE;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.actions__button {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+}
+
+@media screen and (max-width: 700px) {
+
+    .control-panel {
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        gap: 0;
+    }
+}
