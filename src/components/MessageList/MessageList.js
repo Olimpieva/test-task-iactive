@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import messagesActions from '../../redux/actions';
 import { currentMessagesSelector } from '../../redux/selectors';
@@ -42,14 +43,16 @@ function MessageList() {
     };
 
     const renderMessageList = () => {
-        return currentMessages.map((item, index) => (
-            <li className="message-list__item" key={`${item.id}_${index}`} >
-                <Message
-                    item={item}
-                    isLiked={likedMessages.includes(item.id)}
-                    likeMessageHandler={toggleLike}
-                />
-            </li>
+        return currentMessages.map(item => (
+            <CSSTransition key={item.staticKey} timeout={500} classNames="message-item">
+                <li className="message-list__item">
+                    <Message
+                        item={item}
+                        isLiked={likedMessages.includes(item.id)}
+                        likeMessageHandler={toggleLike}
+                    />
+                </li>
+            </CSSTransition>
         ))
     };
 
@@ -66,7 +69,10 @@ function MessageList() {
             {error && <span>{error}</span>}
 
             <ul className="message-list__list list">
-                {renderMessageList()}
+                <TransitionGroup>
+                    {renderMessageList()}
+                </TransitionGroup>
+
             </ul>
         </div>
     );

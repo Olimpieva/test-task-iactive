@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import api from "../../utils/Api";
 import handleError from "./errorHandler";
 import {
@@ -26,7 +28,7 @@ export const getMessages = () => async (dispatch, getState) => {
             return dispatch({ type: GET_MESSAGES + SUCCESS });
         }
 
-        const newMessages = response.Messages;
+        const newMessages = response.Messages.map(item => ({ ...item, staticKey: uuidv4() }));
         const numberOfNewMessages = newMessages.length;
         const lastId = newMessages[numberOfNewMessages - 1].id;
         const messages = [...oldMessages, ...newMessages].sort((prev, next) => prev.id < next.id ? -1 : 1).slice(-19);
